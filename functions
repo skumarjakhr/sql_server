@@ -1,0 +1,16 @@
+CREATE FUNCTION dbo.ReplaceMultipleSpaces(@input NVARCHAR(MAX))
+RETURNS NVARCHAR(MAX)
+AS
+BEGIN
+    DECLARE @output NVARCHAR(MAX)
+    SET @output = @input
+
+    -- Replace multiple spaces with a single space
+    WHILE CHARINDEX('  ', @output) > 0
+    BEGIN
+        SET @output = REPLACE(@output, '  ', ' ')
+    END
+
+    RETURN @output
+END
+GO
